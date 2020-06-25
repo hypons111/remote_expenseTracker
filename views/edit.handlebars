@@ -1,0 +1,26 @@
+<form action="/record/{{record._id}}?_method=PUT" method="POST">
+
+  <div>
+    <span>Category：</span>
+    <input type="text" placeholder="" name="category" value="{{record.category}}"></input>
+  </div>
+  <div>
+    <span>Name：</span>
+    <input type="text" placeholder="" name="name" value="{{record.name}}"></input>
+  </div>
+  <div>
+    <span>Date：</span>
+    <input type="text" placeholder="" name="date" value="{{record.date}}"></input>
+  </div>
+  <div>
+    <span>Amount：</span>
+    <input type="text" placeholder="" name="amount" value="{{record.amount}}"></input>
+  </div>
+
+
+  <button type="submit" class="btn btn-success">儲存</button>
+
+
+
+
+</form>

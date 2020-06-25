@@ -1,0 +1,34 @@
+<!-- Large button groups (default and split) -->
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">類別</button>
+  <div class="dropdown-menu">
+    {{#each categories}}
+    <a class="dropdown-item" href="/{{ this.category }}">{{this.category}}</a>
+    {{/each}}
+  </div>
+</div>
+
+
+<h3>{{#if filter}}{{filter}}{{/if}}總金額：{{ yeah}}</h3>
+
+
+<ul>
+  {{#each recodes}}
+  <li>
+    <button type="button" class="btn btn-outline-secondary">{{{this.category}}}</button>
+    <button type="button" class="btn btn-outline-secondary">{{this.name}}</button>
+    <button type="button" class="btn btn-outline-secondary">{{this.date}}</button>
+    <button type="button" class="btn btn-outline-secondary">{{this.amount}}</button>
+
+    <a href="./record/{{ this._id }}/edit">
+      <button type="button" class="btn btn-success">修改</button>
+    </a>
+
+    <form action="./record/{{this._id}}/?_method=DELETE" method="POST" style="display: inline">
+      <button type="submit" class="btn btn-danger">刪除</button>
+    </form>
+
+  </li>
+  {{/each}}
+</ul>
