@@ -1,4 +1,4 @@
-const port = 3000
+const port = process.env.PORT || 3000
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
@@ -11,7 +11,8 @@ const e = require('express')
 const category = require('./models/category')
 
 
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/todo-list'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', () => { console.log('mongodb error!') })
 db.once('open', () => { console.log('mongodb connected') })
