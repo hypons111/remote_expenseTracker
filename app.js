@@ -7,29 +7,19 @@ const metOve = require('method-override')
 const mongoose = require('mongoose')
 const Record = require('./models/record')
 const Category = require('./models/category')
-const e = require('express')
-const category = require('./models/category')
 
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/todo-list'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', () => { console.log('mongodb error!') })
 db.once('open', () => { console.log('mongodb connected') })
 
 
-const choose = exphbs.create({
-  defaultLayout: 'main',
-  helpers: {
-    keep: function (v1, v2) { return (v1 === v2) }
-  }
-})
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(bodPar.urlencoded({ extended: true }))
 app.use(metOve('_method'))
-
 
 
 app.get('/', (req, res) => {

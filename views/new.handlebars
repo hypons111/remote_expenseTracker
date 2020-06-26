@@ -1,32 +1,6 @@
-<form action="/record" method="POST">
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {{#each categories}}
-      <a class="dropdown-item" href="{{this.category}}">{{this.category}}</a>
-      {{/each}}
-
-    </div>
-  </div>
-
-
-
-
-
-  <input type="text" placeholder="category" name="category">
-  <input type="text" placeholder="name" name="name">
-  <input type="text" placeholder="date" name="date">
-  <input type="text" placeholder="amount" name="amount">
-  <button type="submit">Create</button>
+<input type="text" placeholder="category" name="category">
+<input type="text" placeholder="name" name="name">
+<input type="text" placeholder="date" name="date">
+<input type="text" placeholder="amount" name="amount">
+<button type="submit">Create</button>
 </form>
-
-
-{{!-- 
-家居物業 （icon）
-交通出行 （icon）
-休閒娛樂 （icon）
-餐飲食品 （icon）
-其他 --}}
