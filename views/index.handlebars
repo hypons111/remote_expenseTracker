@@ -1,4 +1,3 @@
-<!-- Large button groups (default and split) -->
 <div class="btn-group">
   <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
     aria-expanded="false">類別</button>
@@ -10,25 +9,34 @@
 </div>
 
 
-<h3>{{#if filter}}{{filter}}{{/if}}總金額：{{ yeah}}</h3>
+<h3>{{#if filter}}{{ filter }}{{/if}}{{#unless filter}}總{{/unless}}金額：{{ yeah }}</h3>
 
 
-<ul>
-  {{#each recodes}}
-  <li>
-    <button type="button" class="btn btn-outline-secondary">{{{this.category}}}</button>
-    <button type="button" class="btn btn-outline-secondary">{{this.name}}</button>
-    <button type="button" class="btn btn-outline-secondary">{{this.date}}</button>
-    <button type="button" class="btn btn-outline-secondary">{{this.amount}}</button>
-
-    <a href="./record/{{ this._id }}/edit">
-      <button type="button" class="btn btn-success">修改</button>
-    </a>
-
-    <form action="./record/{{this._id}}/?_method=DELETE" method="POST" style="display: inline">
-      <button type="submit" class="btn btn-danger">刪除</button>
-    </form>
-
-  </li>
-  {{/each}}
-</ul>
+{{#each recodes}}
+<div class="container">
+  <div class="row">
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-secondary">{{{ this.icon }}}</button>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-outline-secondary">{{{ this.name }}}</button>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-outline-secondary">{{{ this.date }}}</button>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-outline-secondary">{{{ this.amount }}}</button>
+    </div>
+    <div class="col-2">
+      <a href="./record/{{ this._id }}/edit">
+        <button type="button" class="btn btn-success">修改</button>
+      </a>
+    </div>
+    <div class="col-2">
+      <form action="./record/{{this._id}}/?_method=DELETE" method="POST" style="display: inline">
+        <button type="submit" class="btn btn-danger">刪除</button>
+      </form>
+    </div>
+  </div>
+</div>
+{{/each}}

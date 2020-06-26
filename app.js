@@ -30,9 +30,7 @@ app.get('/', (req, res) => {
     .then(cat => categories = cat)
   Record.find()
     .lean()
-    .then(amount => {
-      amount.forEach(amount => yeah += (amount.amount))
-    })
+    .then(amount => { amount.forEach(amount => yeah += (amount.amount)) })
     .catch(error = console.log('error'))
   Record.find()
     .lean()
@@ -43,14 +41,17 @@ app.get('/', (req, res) => {
 app.get('/:filter', (req, res) => {
   const filter = req.params.filter
   let yeah = 0
-  let categoryIcon = ['abc']
 
   Category.find()
     .lean()
     .then(cat => categories = cat)
   Record.find({ category: filter })
     .lean()
-    .then(recodes => res.render('index', { recodes, categories, filter, yeah, categoryIcon }))
+    .then(amount => { amount.forEach(amount => yeah += (amount.amount)) })
+    .catch(error = console.log('error'))
+  Record.find({ category: filter })
+    .lean()
+    .then(recodes => res.render('index', { recodes, categories, filter, yeah }))
     .catch(error = console.log('error'))
 })
 
@@ -63,28 +64,62 @@ app.get('/record/new', (req, res) => {
 
 app.post('/record', (req, res) => {
   const { name, category, date, amount } = req.body
-  return Record.create({ name, category, date, amount })
+  let icon = req.body.category
+
+  if (icon === "家居物業") {
+    icon = '<i class=\"fas fa-home\"></i>'
+  } else if (icon === "交通出行") {
+    icon = '<i class="fas fa-shuttle-van"></i>'
+  } else if (icon === "休閒娛樂") {
+    icon = '<i class="fas fa-grin-beam"></i>'
+  } else if (icon === "餐飲食品") {
+    icon = '<i class="fas fa-utensils"></i>'
+  } else if (icon === "其他") {
+    icon = '<i class="fas fa-pen"></i>'
+  }
+
+  return Record.create({ name, category, date, amount, icon })
     .then(() => res.redirect('/'))
     .catch(error = console.log('error'))
 })
 
 app.get('/record/:id/edit', (req, res) => {
   const id = req.params.id
+
+  Category.find()
+    .lean()
+    .then(cat => categories = cat)
+
   return Record.findById(id)
     .lean()
-    .then((record) => res.render('edit', { record }))
+    .then(record => res.render('edit', { record, categories }))
     .catch(error = console.log('error'))
 })
 
 app.put('/record/:id/', (req, res) => {
   const { name, category, date, amount } = req.body
   const id = req.params.id
+  let icon = req.body.category
+
+  if (icon === "家居物業") {
+    icon = '<i class=\"fas fa-home\"></i>'
+  } else if (icon === "交通出行") {
+    icon = '<i class="fas fa-shuttle-van"></i>'
+  } else if (icon === "休閒娛樂") {
+    icon = '<i class="fas fa-grin-beam"></i>'
+  } else if (icon === "餐飲食品") {
+    icon = '<i class="fas fa-utensils"></i>'
+  } else if (icon === "其他") {
+    icon = '<i class="fas fa-pen"></i>'
+  }
+
   return Record.findById(id)
     .then(record => {
       record.category = category
       record.name = name
       record.date = date
       record.amount = amount
+      record.icon = icon
       return record.save()
     })
     .then(() => res.redirect(`/`))
@@ -108,14 +143,3 @@ app.listen(port, () => {
 
 
 
-// if (category === "家居物業") {
-//   categoryIcon.push('<i class="fas fa-home"></i>')
-// } else if (category === "交通出行") {
-//   categoryIcon.push('<i class="fas fa-shuttle-van"></i>')
-// } else if (category === "休閒娛樂") {
-//   categoryIcon.push('<i class="fas fa-grin-beam"></i>')
-// } else if (category === "餐飲食品 ") {
-//   categoryIcon.push('<i class="fas fa-utensils"></i>')
-// } else if (category === "其他 ") {
-//   categoryIcon.push('<i class="fas fa-pen"></i>')
-// }

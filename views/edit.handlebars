@@ -1,26 +1,28 @@
 <form action="/record/{{record._id}}?_method=PUT" method="POST">
 
-  <div>
-    <span>Category：</span>
-    <input type="text" placeholder="" name="category" value="{{record.category}}"></input>
-  </div>
-  <div>
-    <span>Name：</span>
-    <input type="text" placeholder="" name="name" value="{{record.name}}"></input>
-  </div>
-  <div>
-    <span>Date：</span>
-    <input type="text" placeholder="" name="date" value="{{record.date}}"></input>
-  </div>
-  <div>
-    <span>Amount：</span>
-    <input type="text" placeholder="" name="amount" value="{{record.amount}}"></input>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">名稱</label>
+    <input type="text" class="form-control" name="name" value="{{record.name}}"></input>
   </div>
 
+  <div class="form-group">
+    <label for="exampleFormControlInput1">日期</label>
+    <input type="text" class="form-control" name="date" value="{{record.date}}"></input>
+  </div>
 
-  <button type="submit" class="btn btn-success">儲存</button>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">類別</label>
+    <select class="form-control" name="category">
+      <option>{{record.category}}</option>
+      {{#each categories}}
+      <option>{{this.category}}</option>
+      {{/each}}
+    </select>
+  </div>
 
-
-
-
+  <div class="form-group">
+    <label for="exampleFormControlInput1">金額</label>
+    <input type="text" class="form-control" name="amount" value="{{record.amount}}"></input>
+  </div>
+  <button type="submit">儲存</button>
 </form>

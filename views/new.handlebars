@@ -1,7 +1,27 @@
 <form action="/record" method="POST">
-  <input type="text" placeholder="category" name="category">
-  <input type="text" placeholder="name" name="name">
-  <input type="text" placeholder="date" name="date">
-  <input type="text" placeholder="amount" name="amount">
-  <button type="submit">Create</button>
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">名稱</label>
+    <input type="text" class="form-control" name="name" placeholder="">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">日期</label>
+    <input type="text" class="form-control" name="date" placeholder="YYYY-MM-DD">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">類別</label>
+    <select class="form-control" name="category">
+      {{#each categories}}
+      <option>{{this.category}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">金額</label>
+    <input type="text" class="form-control" name="amount" placeholder="">
+  </div>
+  <button type="submit">新增</button>
 </form>
