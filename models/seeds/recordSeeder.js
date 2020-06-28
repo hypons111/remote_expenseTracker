@@ -1,10 +1,7 @@
-const mongoose = require('mongoose')
 const Record = require('../record')
 const spended = require('../../spended')
+const db = require('../../config/mongoose')
 
-
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
 db.on('error', () => { console.log('mongodb error!') })
 db.once('open', () => {
   for (let i = 0; i < spended.results.length; i++) {
